@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Image Picker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+    }
+    #preview {
+        margin-top: 20px;
+        max-width: 400px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    #preview img {
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+
+<h3>Image Picker</h3>
+
+<select id="gambarDropdown" onchange="tampilkanGambar()">
+    <option value="">-- Pilih Gambar --</option>
+    <option value="bison.webp">Bison</option>
+    <option value="gorila.jpg">Gorilla</option>
+    <option value="lion.jpg">Lion</option>
+    <option value="tiger.jpg">Tiger</option>
+    <option value="elephant.avif">Elephant</option>
+    <option value="bear.jpg">Bear</option>
+</select>
+
+<div id="preview">
+    <img id="imgArea" src="" alt="">
+</div>
+
+<script>
+function tampilkanGambar() {
+    var file = document.getElementById("gambarDropdown").value;
+    if (file !== "") {
+        document.getElementById("imgArea").src = file;
+        alert("Ini gambar " + file);
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Chat Message</title>
+
+<style>
+    body {
+        height: 2000px; /* hanya untuk melihat efek scroll */
+        font-family: Arial, sans-serif;
+    }
+
+    /* posisi chatbox pojok kanan bawah */
+    .chatbox {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        height: 350px;
+        border: 1px solid black;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* kotak pesan */
+    #messages {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        border-bottom: 1px solid black;
+        white-space: pre-wrap;
+        font-size: 14px;
+    }
+
+    /* area input bawah */
+    .input-area {
+        display: flex;
+    }
+
+    #inputText {
+        flex: 1;
+        padding: 5px;
+        border: none;
+        border-top: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+    }
+
+    #sendBtn {
+        width: 60px;
+        border: none;
+        background: #ddd;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Chatbox -->
+<div class="chatbox">
+    <div id="messages"></div>
+
+    <div class="input-area">
+        <input type="text" id="inputText" placeholder="Tulis pesan...">
+        <button id="sendBtn">Kirim</button>
+    </div>
+</div>
+
+<script>
+    const messages = document.getElementById("messages");
+    const inputText = document.getElementById("inputText");
+    const sendBtn = document.getElementById("sendBtn");
+
+    function sendMessage() {
+        let text = inputText.value.trim();
+        if (text === "") return;
+
+        // tampilkan pesan baru
+        let p = document.createElement("div");
+        p.textContent = text;
+        messages.appendChild(p);
+
+        // scroll selalu ke bawah
+        messages.scrollTop = messages.scrollHeight;
+
+        // kosongkan input
+        inputText.value = "";
+    }
+
+    sendBtn.addEventListener("click", sendMessage);
+
+    // tekan ENTER untuk kirim
+    inputText.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sendMessage();
+    });
+</script>
+
+</body>
+</html>
